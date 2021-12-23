@@ -7,7 +7,7 @@
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-9 text-center">
-                        <img class="" src="assets\company-logo\ug-logo-green.png">
+                        <img class="" src="assets\logos\ug-logo-green.png">
                     </div>
                 </div>
                 <div class="mt-5">
@@ -123,7 +123,7 @@
                                 <!--error message-->
                                 <div
                                     *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)">
-                                    <div class="err-msg-md" [hidden]="!confirmPassword?.noMatch">
+                                    <div class="err-msg-md" [hidden]="!confirmPassword?.errors">
                                         Passswords do not match
                                     </div>
                                 </div>
