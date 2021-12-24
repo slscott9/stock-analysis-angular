@@ -1,1 +1,242 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Nunito';
+}
+
+html {
+    background-color: #ffffff;
+
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #55A038 !important;
+    border-color: #44BD15 !important;
+    font-weight: 600 !important;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+.btn-dropdown-lg{
+    height: calc(1.5em + 1rem + 2px);
+    width: 100%;
+    text-align: left;
+    border: 1px solid #CFD4D9; /*grey 400   */
+    font-size: 18px !important;
+    /* background-color: #EFF3F5 /* grey 200  */
+}
+
+.btn-dropdown-md{
+    height: calc(1.5em + 0.75rem + 2px) !important;
+    width: 100% !important;
+    text-align: left !important;
+    border: 1px solid #CFD4D9 !important; /*grey 400   */
+    font-size: 18px !important;
+    /* background-color: #EFF3F5 /* grey 200  */
+}
+.btn-dropdown-lg:focus {
+    border: 1px solid #1A6EED !important  /*Pack Health/Status/Color/focus */
+        /* not in brand ui config */
+    ;
+    border-style: inset !important;
+    box-shadow: none !important;
+}
+.btn-dropdown-md:focus {
+    border: 1px solid #1A6EED !important  /*Pack Health/Status/Color/focus */
+        /* not in brand ui config */
+    ;
+    border-style: inset;
+    box-shadow: none !important;
+}
+/* .dropdown-menu{
+    padding: 8px;
+    width: 95%;
+} */
+.dropdown-option-lg{
+    font-size: 18px !important;
+    cursor: pointer;
+    padding: 8px 0px 8px 16px;
+}
+.dropdown-option-md{
+    font-size: 16px !important;
+    cursor: pointer;
+    padding: 8px 0px 8px 16px;
+}
+.dropdown-option-lg:active{
+    background-color: #1A6EED !important;
+    border-radius: 0.25rem;
+    color: #FFFFFF !important;
+}
+.dropdown-option-md:active{
+    background-color: #1A6EED !important;
+    border-radius: 0.25rem;
+    color: #FFFFFF !important;
+}
+.dropdown-option-lg:hover{
+    background-color: #F0FAFF;
+    border-radius: 0.25rem;
+}
+.dropdown-option-md:hover{
+    background-color: #F0FAFF;
+    border-radius: 0.25rem;
+}
+
+
+/* INPUT  */
+input:focus {
+    border: 2px solid #1A6EED !important
+        /* not in brand ui config */
+    ;
+    border-style: inset;
+    box-shadow: none !important;
+}
+textarea:focus{
+    border: 1px solid #1A6EED
+        /* not in brand ui config */
+    ;
+    border-style: inset;
+    box-shadow: none !important;
+}
+/* This sets font size within the input field (Set it to whatever you need in css of angular project)   */
+.form-control {
+    font-size: 18px ;
+}
+/* For medium inputs use font-size 16px   */
+/* .form-control {
+    font-size: 18px !important;
+} */
+.form-control.ng-invalid {
+    /* border: 2px solid var(--brand-danger, #f48356) !important;  UPDATE BRAND UI CONFIG TO  #CC3C1F*/
+    border:  1px solid #CC3C1F !important;
+    box-shadow: none !important;
+}
+.header {
+    font-size: 20px !important;
+    line-height: 120% !important;
+}
+.sub-header {
+    font-size: 32px;
+    line-height: 300% !important;
+}
+.label-lg {
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: 0%;
+}
+.label-md {
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 1%;
+}
+.label-sm {
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: 2%;
+}
+.label-xs {
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 2.5%;
+}
+/* strong (bold) */
+.label-lg-strong {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 0%;
+}
+.label-md-strong {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 1%;
+}
+.label-sm-strong {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 2%;
+}
+.label-xs-strong {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 2.5%;
+}
+/* paragraphs   */
+.p-lead {
+    font-size: 20px;
+    line-height: 150%;
+}
+.p-lg {
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 1%;
+}
+.p-md {
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 1%;
+}
+.p-sm {
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 1%;
+}
+/* ERROR MESSAGE */
+.err-msg-lg {
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    color: #CC3C1F; /*--red-600 */
+}
+.err-msg-md {
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 1%;
+    color: #CC3C1F; /*--red-600 */
+}
+.err-msg-sm {
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: 2%;
+    color: #CC3C1F; /*--red-600 */
+}
+.err-msg-xs {
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 2.5%;
+    color: #CC3C1F; /*--red-600 */
+}
+/* strong (bold) */
+.err-msg-lg-strong {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 0%;
+    color: #CC3C1F; /*--red-600 */
+}
+.err-msg-md-strong {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 1%;
+    color: #CC3C1F; /*--red-600 */
+}
+.err-msg-sm-strong {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 2%;
+    color: #CC3C1F; /*--red-600 */
+}
+.err-msg-xs-strong {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 2.5%;
+    color: #CC3C1F; /*--red-600 */
+}
