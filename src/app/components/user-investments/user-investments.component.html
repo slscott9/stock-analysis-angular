@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row mt-5">
+
+        <div class="col-12">
+            <div class="row mt-3" *ngFor="let investment of investments; let i = index">
+                <div class="col">
+
+                    <div class="row">
+                        <div class="col-2 align-self-center">
+                            {{investment.tickerSymbol}}
+                        </div>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12 label-sm mt-2 ">
+                                    Shares: {{investment.totalShares | number}}
+
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-2" >
+                                <div class="col label-sm">
+                                    Investment: {{investment.totalInvestment | number}}
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col label-sm">
+                                    PPS: {{investment.initialPPS | number}}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-4 mt-2">
+                            <div class="row ">
+                                <div class="col d-flex justify-content-end label-sm" >
+                                    Price: $111
+                                    <!-- {{investment.currentPrice | number}} -->
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col d-flex justify-content-end label-sm">
+                                    Diff: $1111
+                                    <!-- {{investment.priceDiff | number}} -->
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <hr>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

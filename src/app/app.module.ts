@@ -10,6 +10,9 @@ import { UserHomeComponent } from './components/home/user-home/user-home.compone
 import { AuthInterceptor } from './interceptor/interceptor';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { InvestmentsComponent } from './components/investments/investments.component';
+import { StockComponent } from './components/stock/stock.component';
+import { CryptoComponent } from './components/crypto/crypto.component';
+import { UserInvestmentsComponent } from './components/user-investments/user-investments.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { InvestmentsComponent } from './components/investments/investments.compo
     RegisterComponent,
     UserHomeComponent,
     SideBarComponent,
-    InvestmentsComponent
+    InvestmentsComponent,
+    StockComponent,
+    CryptoComponent,
+    UserInvestmentsComponent
   ],
   imports: [
     BrowserModule,

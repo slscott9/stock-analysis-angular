@@ -8,6 +8,8 @@
     height: 100%;
     background-color: #1c1c1c;
     border-right: 1px solid grey;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .main-content {

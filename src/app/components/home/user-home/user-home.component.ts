@@ -1,8 +1,10 @@
+import { logInfo } from './../../../logger/logger';
 import { AuthEventService } from 'src/app/services/events/auth-event.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/interfaces';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authentication/auth.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-user-home',
@@ -22,10 +24,13 @@ export class UserHomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     if(this.authService.isLoggedIn()){
       this.authService.getUser().subscribe(resp => {
         if(resp.data){
-          this.user = resp.user
+          this.user = resp.data
+
+          logInfo('ngOnInit() - user from response', this.logContext, this.user)
         }
       }) 
     }
