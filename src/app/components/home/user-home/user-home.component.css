@@ -1,0 +1,45 @@
+
+.home-container {
+    background-color: #252422;
+    
+}
+
+.side-bar {
+    height: 100%;
+    background-color: #1c1c1c;
+    border-right: 1px solid grey;
+}
+
+.main-content {
+    background-color: #1c1c1c;
+    color: white;
+}
+
+.info-right {
+    background-color: #1c1c1c;
+    border-left: 1px solid grey;
+}
+
+.welcome-sub-header {
+    font-size: 18px;
+}
+
+.welcome-header {
+    font-size: 32px !important;
+}
+
+.welcome {
+    border-bottom: 1px solid grey;
+}
+
+.notifications {
+    border-top: 1px solid grey ;
+}
+
+.label-lg {
+    color: white;
+}
+
+.right-border {
+    border-right: 1px solid grey;
+}
