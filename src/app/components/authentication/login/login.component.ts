@@ -1,3 +1,4 @@
+import { logInfo } from './../../../logger/logger';
 import { AuthEventService } from './../../../services/events/auth-event.service';
 import { ComponentState, User } from './../../../interfaces/interfaces';
 import { Component, OnInit } from '@angular/core';
@@ -45,18 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.authService.isLoggedIn()){
-      this.authService.getUser().subscribe(resp => {
-        if(resp.data){
-          console.log(resp.data)
-          this.authEventService.emitAuthenticatedEvent(resp.user)
-          this.router.navigateByUrl('')
-          // this.componentState.showUserHome = true
-          // logInfo('logged in resp', this.logContext, this.user)
-
-        }
-      }) 
-    }
+    
   }
 
   get email() {
