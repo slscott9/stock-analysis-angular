@@ -1,9 +1,8 @@
-import { LoginComponent } from './../authentication/login/login.component';
 import { logInfo } from './../../logger/logger';
 import { UserInvestmentsService } from './../../services/user-investments/user-investments.service';
 import { User, Investment } from './../../interfaces/interfaces';
-import { UserInvestmentsComponent } from './../user-investments/user-investments.component';
 import { Component, Input, OnInit } from '@angular/core';
+import { FinancialModelService } from 'src/app/services/financial-model/financial-model.service';
 
 @Component({
   selector: 'app-stock',
@@ -18,35 +17,60 @@ export class StockComponent implements OnInit {
 
   investments: Investment[] = []
 
+  currentPriceMap = new Map<string, number>()
+
+
   constructor(
-    private userInvestmentsService: UserInvestmentsService
-  ) { 
+    private userInvestmentsService: UserInvestmentsService,
+    private financialModelService: FinancialModelService
+  ) {
 
   }
 
   ngOnInit(): void {
-    
+
 
   }
 
 
   ngOnChanges() {
-    logInfo('ngOnit() - user', this.logContext, this.user)
     this.getUserInvestments();
+    this.getCurrentPrices();
 
   }
 
   getUserInvestments() {
     this.userInvestmentsService.getAllInvestments(
-      this.user.userId, 
+      this.user.userId,
       'https://scottsl.com/api/stock'
     ).subscribe(resp => {
       if (resp.investments) {
         this.investments = resp.investments
-
-        logInfo('getUserInvestments() investments', this.logContext, this.investments)
       }
     })
+  }
+
+  getCurrentPrices() {
+    this.financialModelService.getCurrentPrices(this.user.userId, 600000, false).subscribe(resp => {
+      if (resp) {
+        this.setCurrentPriceMap(resp.currentPrices);
+        this.setCurrentPrices();
+      }
+    })
+  }
+
+  //utility
+  setCurrentPriceMap(currentPrices: any[]) {
+    for (let price of currentPrices) {
+      this.currentPriceMap.set(price.tickerSymbol, +price.price)
+    }
+  }
+
+  setCurrentPrices() {
+    for (let investment of this.investments) {
+      investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
+      investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
+    }
   }
 
 }
