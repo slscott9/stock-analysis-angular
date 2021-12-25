@@ -1,43 +1,62 @@
 
-.home-container {
-    background-color: #252422;
-    
+.container-fluid {
+    background-color: #1c1c1c;
+
 }
+
+
 
 
 .card {
     background-color: #1c1c1c;
 }
 
+.card-nav-bar {
+    background-color: #252422;
+    border-radius: 15px;
+}
+
+.card-notification {
+    background-color: #252422;
+    border-radius: 15px;
+    height: 100%;
+}
+
+.main-content {
+    background-color: #1c1c1c;
+    color: white;
+    margin: auto;
+}
+
 /* screens 1300px or more   */
 @media screen and (min-width: 1300px) {
-    .container-fluid {
+    .main-content {
         width: 65% !important;
     }
 }
 
 /* screens 1300px or less   */
 @media screen and (max-width: 1300px) {
-    .container-fluid {
+    .main-content {
         width: 100% !important;
     }
 }
 
 /* screens 1200px or less   */
 @media screen and (max-width: 1200px) {
-    .container-fluid {
+    .main-content {
         width: 90% !important;
     }
 }
 
 @media screen and (max-width: 992px) {
-    .container-fluid {
+    .main-content {
         width: 90% !important;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .container-fluid {
+    .main-content {
         width: 100% !important;
     }
 }
@@ -50,10 +69,7 @@
 
 }
 
-.main-content {
-    background-color: #1c1c1c;
-    color: white;
-}
+
 
 .info-right {
     background-color: #1c1c1c;
