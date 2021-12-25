@@ -1,11 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, timer, switchMap } from 'rxjs';
+import { logInfo } from 'src/app/logger/logger';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoinmarketService {
+
+  logContext: string = 'COIN MARKET SERVICE'
 
   httpOptions: any;
 

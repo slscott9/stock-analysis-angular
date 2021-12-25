@@ -1,11 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, timer, switchMap } from 'rxjs';
+import { logInfo } from 'src/app/logger/logger';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FinancialModelService {
+
+  logContext: string = 'FINANCIAL MODEL SERVICE'
 
 
   httpOptions: any;
@@ -21,6 +24,8 @@ export class FinancialModelService {
   }
 
   //https://scottsl.com/api/coinmarket/current/totals
+
+  
   currentPriceTotals(userId: number, isCrypto: boolean): Observable<any> {
     return this.http.post(
       'https://scottsl.com/api/financial/current/totals',

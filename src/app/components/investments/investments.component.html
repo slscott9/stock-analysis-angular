@@ -13,7 +13,7 @@
                                     <div>Total profit</div>
 
                                     <div class="profit">
-                                        $1000
+                                        ${{totalProfit | number}}
                                     </div>
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                                         Investment
                                     </div>
                                     <div>
-                                        $500
+                                        ${{this.user.stockInitialInvestment + this.user.cryptoInitialInvestment | number}}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -32,7 +32,7 @@
                                         Market value
                                     </div>
                                     <div>
-                                        $500
+                                        ${{currentPriceTotal | number}}
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <div>Crypto profit</div>
 
                                     <div class="profit">
-                                        $1000
+                                        ${{cryptoProfit | number}}
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                         Investment
                                     </div>
                                     <div>
-                                        $500
+                                        ${{this.user.cryptoInitialInvestment | number}}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -69,7 +69,7 @@
                                         Market value
                                     </div>
                                     <div>
-                                        $500
+                                        ${{cryptoCurrentPriceTotal | number }}
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                     <div>Stock profit</div>
 
                                     <div class="profit">
-                                        $1000
+                                        ${{stockProfit | number}}
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                                         Investment
                                     </div>
                                     <div>
-                                        $500
+                                        ${{this.user.stockInitialInvestment | number}}
                                     </div>
                                 </div>
                                 <div class="col">
@@ -105,7 +105,7 @@
                                         Market value
                                     </div>
                                     <div>
-                                        $500
+                                        ${{stockCurrentPriceTotal | number}}
                                     </div>
                                 </div>
                             </div>
