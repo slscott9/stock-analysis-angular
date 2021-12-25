@@ -3,6 +3,7 @@ import { logInfo } from './../../logger/logger';
 import { Component, Input, OnInit } from '@angular/core';
 import { User, Investment } from 'src/app/interfaces/interfaces';
 import { UserInvestmentsService } from 'src/app/services/user-investments/user-investments.service';
+import { CoinmarketService } from 'src/app/services/coinmarket/coinmarket.service';
 
 @Component({
   selector: 'app-crypto',
@@ -17,9 +18,12 @@ export class CryptoComponent implements OnInit {
 
   investments: Investment[] = []
 
+  currentPriceMap = new Map<string, number>()
+
+
   constructor(
     private userInvestmentsService: UserInvestmentsService,
-    private userDataEventService : UserDataService
+    private coinMarketService: CoinmarketService
 
   ) { }
 
@@ -29,8 +33,11 @@ export class CryptoComponent implements OnInit {
   }
 
   ngOnChanges() {
-    logInfo('ngOnit() - user', this.logContext, this.user)
     this.getUserInvestments();
+
+    this.getCurrentPrices();
+
+
 
   }
 
@@ -45,6 +52,31 @@ export class CryptoComponent implements OnInit {
         this.investments = resp.investments
       }
     })
+  }
+
+  getCurrentPrices() {
+    this.coinMarketService.getCurrentPrices(this.user.userId, 600000, true).subscribe(resp => {
+      if (resp) {
+        this.setCurrentPriceMap(resp.currentPrices);
+        this.setCurrentPrices();
+      }
+    })
+  }
+
+
+   //3
+   setCurrentPriceMap(currentPrices: any[]) {
+    for (let price of currentPrices) {
+      this.currentPriceMap.set(price.tickerSymbol, +price.price)
+    }
+  }
+
+  //4
+  setCurrentPrices() {
+    for (let investment of this.investments) {
+      investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
+      investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
+    }
   }
 
 }
