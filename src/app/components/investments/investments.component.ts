@@ -40,7 +40,7 @@ export class InvestmentsComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges() {
-   this.calculateTotals();
+  //  this.calculateTotals();
   }
 
 

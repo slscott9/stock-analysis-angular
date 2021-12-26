@@ -6,3 +6,12 @@ img {
 .nav-bar {
     color: white;
 }
+
+
+a {
+    color: white;
+}
+
+.dropdown-menu {
+    background-color: #1c1c1c;
+}

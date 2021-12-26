@@ -35,7 +35,7 @@ export class StockComponent implements OnInit {
 
   ngOnChanges() {
     this.getUserInvestments();
-    this.getCurrentPrices();
+    // this.getCurrentPrices();
 
   }
 

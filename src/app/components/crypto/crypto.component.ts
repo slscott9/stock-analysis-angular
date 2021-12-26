@@ -35,7 +35,7 @@ export class CryptoComponent implements OnInit {
   ngOnChanges() {
     this.getUserInvestments();
 
-    this.getCurrentPrices();
+    // this.getCurrentPrices();
 
 
 

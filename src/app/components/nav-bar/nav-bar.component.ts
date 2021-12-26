@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/interfaces';
 import { logInfo } from 'src/app/logger/logger';
+import { AuthService } from 'src/app/services/authentication/auth.service';
 import { AuthEventService } from 'src/app/services/events/auth-event.service';
 
 @Component({
@@ -15,11 +17,20 @@ export class NavBarComponent implements OnInit {
   @Input() user: User
 
   constructor(
-    private authEventService: AuthEventService
+    private authEventService: AuthEventService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
 
+    
+
+  }
+
+  logout() {
+    this.authService.logout()
+    this.router.navigateByUrl('/login')
   }
 
 }

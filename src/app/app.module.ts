@@ -14,6 +14,7 @@ import { StockComponent } from './components/stock/stock.component';
 import { CryptoComponent } from './components/crypto/crypto.component';
 import { UserInvestmentsComponent } from './components/user-investments/user-investments.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { InvestmentTotalsComponent } from './components/investment-totals/investment-totals.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     StockComponent,
     CryptoComponent,
     UserInvestmentsComponent,
-    NavBarComponent
+    NavBarComponent,
+    InvestmentTotalsComponent
   ],
   imports: [
     BrowserModule,
