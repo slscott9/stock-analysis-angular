@@ -31,7 +31,7 @@
 /* screens 1300px or more   */
 @media screen and (min-width: 1300px) {
     .main-content {
-        width: 65% !important;
+        width: 80% !important;
     }
 }
 
