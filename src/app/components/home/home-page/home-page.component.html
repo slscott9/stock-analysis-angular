@@ -1,0 +1,65 @@
+<div class="container-fluid vh-100">
+
+    NEW HOME PAGE COMP
+
+    <!--MAIN CONTENT-->
+    <div class="main-content mt-3">
+
+        <!--NAV BAR-->
+        <div class="row pl-3 ">
+            <div class="col-12">
+                <div class="card card-nav-bar">
+                    <div class="card-body">
+                        <app-nav-bar [user]="user"></app-nav-bar>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 d-flex justify-content-center">
+            <!--TOTAL INVESTMENTS and HOME INVESTMENTS-->
+
+            <div class="col-10" *ngIf="homeState.showHome !== false">
+                <app-home-investment-info
+                    [user]="user" [totalProfit]="totalProfit" [currentPriceTotal]="currentPriceTotal"
+                    [stockProfit]="stockProfit" [stockInvestment]="stockInvestment"
+                    [stockCurrentPriceTotal]="stockCurrentPriceTotal" [cryptoProfit]="cryptoProfit"
+                    [cryptoInvestment]="cryptoInvestment" [cryptoCurrentPriceTotal]="cryptoCurrentPriceTotal"
+                    [user]="user"
+                ></app-home-investment-info>
+            </div>
+
+
+
+
+            <!--INVESTMENTS DETAIL-->
+            <div class="col-10" *ngIf="homeState.showCryptoDetail === true">
+                show crypto detail
+                <app-crypto-detail
+                    [investments]="cryptoInvestments"
+                ></app-crypto-detail>
+            </div>
+
+            <div class="col-10" *ngIf="homeState.showStockDetail === true">
+                show stock detail
+                <app-stock-detail
+                    [investments]="stockInvestments"
+                ></app-stock-detail>
+            </div>
+
+
+            <!--NOTIFICATIONS-->
+            <div class="col-2 pl-0">
+                <div class="card card-notification">
+                    <div class="card-body">
+                        Nofications
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+    </div>
+</div>

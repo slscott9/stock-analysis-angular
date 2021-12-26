@@ -30,13 +30,12 @@ export class NavBarComponent implements OnInit {
 
   }
 
-  emitNavbarEvent(showInvestmentTotals: boolean, showWatchlist: boolean, showCrypto: boolean, showStocks: boolean) {
+  emitNavbarEvent( showHome: boolean, showCryptoDetail: boolean, showStockDetail: boolean) {
     this.navBarEventService.emitNavBarEvent(
       {
-        showWatchlist: showWatchlist,
-        showCrypto: showCrypto,
-        showStocks: showStocks,
-        showInvestmentTotals: showInvestmentTotals
+        showCryptoDetail: showCryptoDetail,
+        showStockDetail: showStockDetail,
+        showHome: showHome
       }
     )
   }

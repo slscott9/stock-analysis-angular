@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <app-investment-totals [user]="user" [totalProfit]="totalProfit" [currentPriceTotal]="currentPriceTotal"
+        [stockProfit]="stockProfit" [stockInvestment]="stockInvestment"
+        [stockCurrentPriceTotal]="stockCurrentPriceTotal" [cryptoProfit]="cryptoProfit"
+        [cryptoInvestment]="cryptoInvestment" [cryptoCurrentPriceTotal]="cryptoCurrentPriceTotal">
+    </app-investment-totals>
+
+
+    <div class="row">
+        <div class="col-6">
+            <app-crypto [user]="user"></app-crypto>
+        </div>
+        <div class="col-6">
+            <app-stock [user]="user"></app-stock>
+        </div>
+    </div>
+</div>

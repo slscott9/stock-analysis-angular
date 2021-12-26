@@ -3,15 +3,20 @@ import { Investment } from 'src/app/interfaces/interfaces';
 import { UserDataService } from 'src/app/services/events/user-data-event/user-data.service';
 
 @Component({
-  selector: 'app-home-investments',
-  templateUrl: './home-investments.component.html',
-  styleUrls: ['./home-investments.component.css']
+  selector: 'app-investment-detail',
+  templateUrl: './investment-detail.component.html',
+  styleUrls: ['./investment-detail.component.css']
 })
-export class HomeInvestmentsComponent implements OnInit {
+export class InvestmentDetailComponent implements OnInit {
 
   logContext: string = 'USER INVESTMENTS COMPONENT'
 
   @Input() investments: Investment[]
+
+  @Input() totalProfit: number 
+  @Input() currentPriceTotal: number
+  @Input() marketValue: number
+  @Input() showCrypto: boolean
   
 
   constructor(
@@ -19,9 +24,7 @@ export class HomeInvestmentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.userDataEventService.userCryptoEvent.subscribe(event => {
-    //   logInfo('ngOninit() event', this.logContext, event)
-    //   this.investments = event
-    // })
+   
   }
+
 }
