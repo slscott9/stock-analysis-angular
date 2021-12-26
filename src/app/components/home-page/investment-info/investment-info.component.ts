@@ -1,20 +1,22 @@
-import { User } from './../../interfaces/interfaces';
 import { Component, Input, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
+import { User } from 'src/app/interfaces/interfaces';
 import { CoinmarketService } from 'src/app/services/coinmarket/coinmarket.service';
 import { FinancialModelService } from 'src/app/services/financial-model/financial-model.service';
-import { logInfo } from 'src/app/logger/logger';
-import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'app-investments',
-  templateUrl: './investments.component.html',
-  styleUrls: ['./investments.component.css']
+  selector: 'app-investment-info',
+  templateUrl: './investment-info.component.html',
+  styleUrls: ['./investment-info.component.css']
 })
-export class InvestmentsComponent implements OnInit {
+export class InvestmentInfoComponent implements OnInit {
 
-  logContext: string = 'INVESTMENTS COMPONENT'
+  logContext: string = 'INVESTMENT INFO COMPONENT'
 
   @Input() user: User
+  userInvestments: boolean = false
+
+
 
   totalProfit: number = 0;
 

@@ -6,15 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
-import { UserHomeComponent } from './components/home/user-home/user-home.component';
+import { UserHomeComponent } from './components/home-page/user-home/user-home.component';
 import { AuthInterceptor } from './interceptor/interceptor';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { InvestmentsComponent } from './components/investments/investments.component';
 import { StockComponent } from './components/stock/stock.component';
 import { CryptoComponent } from './components/crypto/crypto.component';
 import { UserInvestmentsComponent } from './components/user-investments/user-investments.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { InvestmentTotalsComponent } from './components/investment-totals/investment-totals.component';
+import { NavBarComponent } from './components/home-page/nav-bar/nav-bar.component';
+import { HomeInvestmentsComponent } from './components/home-page/home-investments/home-investments.component';
+import { CommonModule } from '@angular/common';
+import { InvestmentInfoComponent } from './components/home-page/investment-info/investment-info.component';
 
 @NgModule({
   declarations: [
@@ -23,15 +24,16 @@ import { InvestmentTotalsComponent } from './components/investment-totals/invest
     RegisterComponent,
     UserHomeComponent,
     SideBarComponent,
-    InvestmentsComponent,
     StockComponent,
     CryptoComponent,
     UserInvestmentsComponent,
     NavBarComponent,
-    InvestmentTotalsComponent
+    HomeInvestmentsComponent,
+    InvestmentInfoComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

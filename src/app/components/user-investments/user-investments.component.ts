@@ -13,6 +13,11 @@ export class UserInvestmentsComponent implements OnInit {
   logContext: string = 'USER INVESTMENTS COMPONENT'
 
   @Input() investments: Investment[]
+
+  @Input() totalProfit: number 
+  @Input() currentPriceTotal: number
+  @Input() marketValue: number
+  @Input() showCrypto: boolean
   
 
   constructor(
@@ -20,10 +25,7 @@ export class UserInvestmentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.userDataEventService.userCryptoEvent.subscribe(event => {
-    //   logInfo('ngOninit() event', this.logContext, event)
-    //   this.investments = event
-    // })
+   
   }
 
 }

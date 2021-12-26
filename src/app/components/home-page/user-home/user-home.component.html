@@ -16,8 +16,15 @@
 
         <div class="row mt-4 d-flex justify-content-center">
             <!--INVESTMENTS-->
-            <div class="col-10 ">
-                <app-investments [user]="user"></app-investments>
+
+            <div class="col-10" *ngIf="homeState.showInvestmentTotals !== false">
+                <app-investment-info [user]="user"></app-investment-info>
+            </div>
+
+            <!--USER INVESTMENTS FOCUS-->
+
+            <div class="col-10" *ngIf="homeState.showCrypto === true || homeState.showStocks === true">
+                <app-user-investments></app-user-investments>
             </div>
 
             <!--NOTIFICATIONS-->
@@ -30,5 +37,8 @@
                 </div>
             </div>
         </div>
+
+
+        
     </div>
 </div>

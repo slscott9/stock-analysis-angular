@@ -4,6 +4,7 @@ import { User } from 'src/app/interfaces/interfaces';
 import { logInfo } from 'src/app/logger/logger';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { AuthEventService } from 'src/app/services/events/auth-event.service';
+import { NavBarEventService } from 'src/app/services/events/nav-bar-event/nav-bar-event.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -19,13 +20,25 @@ export class NavBarComponent implements OnInit {
   constructor(
     private authEventService: AuthEventService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private navBarEventService: NavBarEventService
   ) { }
 
   ngOnInit(): void {
 
     
 
+  }
+
+  emitNavbarEvent(showInvestmentTotals: boolean, showWatchlist: boolean, showCrypto: boolean, showStocks: boolean) {
+    this.navBarEventService.emitNavBarEvent(
+      {
+        showWatchlist: showWatchlist,
+        showCrypto: showCrypto,
+        showStocks: showStocks,
+        showInvestmentTotals: showInvestmentTotals
+      }
+    )
   }
 
   logout() {

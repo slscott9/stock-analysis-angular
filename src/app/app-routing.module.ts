@@ -1,7 +1,7 @@
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { AuthGuard } from './route-guards/auth.guard';
-import { UserHomeComponent } from './components/home/user-home/user-home.component';
+import { UserHomeComponent } from './components/home-page/user-home/user-home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 

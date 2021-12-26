@@ -2,11 +2,10 @@
     <div class="row">
         <div class="col-1">
             <img class="img-fluid" src="assets\logos\ug-logo-green.png">
-
         </div>
 
-        <div class="col-2 align-self-center">
-            Home
+        <div class="col-2 align-self-center" >
+            <a href="#" (click)="emitNavbarEvent(true, false, false, false)"> Home</a>
         </div>
         <div class="col-2 align-self-center">
             Watchlist
@@ -19,8 +18,8 @@
                   Investments
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Crypto</a>
-                  <a class="dropdown-item" href="#">Stocks</a>
+                  <a class="dropdown-item" href="#" (click)="emitNavbarEvent(false, false, true, false)">Crypto</a>
+                  <a class="dropdown-item" href="#" (click)="emitNavbarEvent(false, false, false, true)">Stocks</a>
                 </div>
               </div>
           </div>

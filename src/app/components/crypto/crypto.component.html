@@ -1,3 +1,18 @@
-<app-user-investments
-[investments]="investments"
-></app-user-investments>
+<div *ngIf="userInvestments === false">
+
+    <app-home-investments
+    [investments]="investments"
+
+    ></app-home-investments>
+
+</div>
+
+
+<div *ngIf="userInvestments === true">
+    <app-user-investments></app-user-investments>
+</div>
+ 
+
+
+
+

@@ -51,6 +51,19 @@ export interface ComponentState {
 
 }
 
+
+
+//home state
+export interface HomeState {
+    showCrypto: boolean,
+    showStocks: boolean,
+    showWatchlist: boolean,
+    showInvestmentTotals: boolean
+}
+
+
+
+
 //auth state
 export interface AuthState {
     showLogin: boolean,

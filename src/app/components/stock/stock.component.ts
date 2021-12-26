@@ -14,6 +14,7 @@ export class StockComponent implements OnInit {
   logContext: string = 'STOCK COMPONENT'
 
   @Input() user: User
+  @Input() userInvestments: boolean
 
   investments: Investment[] = []
 

@@ -15,6 +15,7 @@ export class CryptoComponent implements OnInit {
   logContext: string = 'CRYPTO COMPONENT'
 
   @Input() user: User
+  @Input() userInvestments: boolean
 
   investments: Investment[] = []
 
