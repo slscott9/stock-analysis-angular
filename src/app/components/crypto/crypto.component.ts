@@ -15,11 +15,9 @@ export class CryptoComponent implements OnInit {
   logContext: string = 'CRYPTO COMPONENT'
 
   @Input() user: User
-  @Input() userInvestments: boolean
+  @Input() investments: Investment[] = []
 
-  investments: Investment[] = []
-
-  currentPriceMap = new Map<string, number>()
+  // currentPriceMap = new Map<string, number>()
 
 
   constructor(
@@ -33,51 +31,51 @@ export class CryptoComponent implements OnInit {
   
   }
 
-  ngOnChanges() {
-    this.getUserInvestments();
+  // ngOnChanges() {
+  //   this.getUserInvestments();
 
-    // this.getCurrentPrices();
-
-
-
-  }
-
-  getUserInvestments() {
-    this.userInvestmentsService.getAllInvestments(
-      this.user.userId, 
-      'https://scottsl.com/api/crypto'
-    ).subscribe(resp => {
-
-      logInfo('getUserInvestments() - resp', this.logContext, resp)
-      if (resp.investments) {
-        this.investments = resp.investments
-      }
-    })
-  }
-
-  getCurrentPrices() {
-    this.coinMarketService.getCurrentPrices(this.user.userId, 600000, true).subscribe(resp => {
-      if (resp) {
-        this.setCurrentPriceMap(resp.currentPrices);
-        this.setCurrentPrices();
-      }
-    })
-  }
+  //   // this.getCurrentPrices();
 
 
-   //3
-   setCurrentPriceMap(currentPrices: any[]) {
-    for (let price of currentPrices) {
-      this.currentPriceMap.set(price.tickerSymbol, +price.price)
-    }
-  }
 
-  //4
-  setCurrentPrices() {
-    for (let investment of this.investments) {
-      investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
-      investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
-    }
-  }
+  // }
+
+  // getUserInvestments() {
+  //   this.userInvestmentsService.getAllInvestments(
+  //     this.user.userId, 
+  //     'https://scottsl.com/api/crypto'
+  //   ).subscribe(resp => {
+
+  //     logInfo('getUserInvestments() - resp', this.logContext, resp)
+  //     if (resp.investments) {
+  //       this.investments = resp.investments
+  //     }
+  //   })
+  // }
+
+  // getCurrentPrices() {
+  //   this.coinMarketService.getCurrentPrices(this.user.userId, 600000, true).subscribe(resp => {
+  //     if (resp) {
+  //       this.setCurrentPriceMap(resp.currentPrices);
+  //       this.setCurrentPrices();
+  //     }
+  //   })
+  // }
+
+
+  //  //3
+  //  setCurrentPriceMap(currentPrices: any[]) {
+  //   for (let price of currentPrices) {
+  //     this.currentPriceMap.set(price.tickerSymbol, +price.price)
+  //   }
+  // }
+
+  // //4
+  // setCurrentPrices() {
+  //   for (let investment of this.investments) {
+  //     investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
+  //     investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
+  //   }
+  // }
 
 }

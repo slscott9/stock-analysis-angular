@@ -8,6 +8,7 @@ import { CoinmarketService } from 'src/app/services/coinmarket/coinmarket.servic
 import { AuthEventService } from 'src/app/services/events/auth-event.service';
 import { NavBarEventService } from 'src/app/services/events/nav-bar-event/nav-bar-event.service';
 import { FinancialModelService } from 'src/app/services/financial-model/financial-model.service';
+import { UserInvestmentsService } from 'src/app/services/user-investments/user-investments.service';
 
 @Component({
   selector: 'app-home-page',
@@ -34,6 +35,9 @@ export class HomePageComponent implements OnInit {
   stockInvestments: Investment[]
   cryptoInvestments: Investment[]
 
+  currentPriceMap = new Map<string, number>()
+
+
   homeState: HomeState = {
     showHome: true,
     showCryptoDetail: false,
@@ -46,7 +50,9 @@ export class HomePageComponent implements OnInit {
     private authEventService: AuthEventService,
     private navBarEventService: NavBarEventService,
     private coinMarketService: CoinmarketService,
-    private financialModelService: FinancialModelService
+    private financialModelService: FinancialModelService,
+    private userInvestmentsService: UserInvestmentsService,
+
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +61,9 @@ export class HomePageComponent implements OnInit {
         if(resp.data){
           this.user = resp.data
           // this.calculateTotals();
+
+          this.getCryptoInvestments();
+          this.getStockInvestments();
 
         }
       }) 
@@ -88,6 +97,72 @@ export class HomePageComponent implements OnInit {
 
     })
   }
+
+
+  getCryptoInvestments() {
+    this.userInvestmentsService.getAllInvestments(
+      this.user.userId, 
+      'https://scottsl.com/api/crypto'
+    ).subscribe(resp => {
+
+      logInfo('getUserInvestments() - resp', this.logContext, resp)
+      if (resp.investments) {
+        this.cryptoInvestments = resp.investments
+      }
+    })
+  }
+
+  getCurrentCryptPrices() {
+    this.coinMarketService.getCurrentPrices(this.user.userId, 600000, true).subscribe(resp => {
+      if (resp) {
+        this.setCurrentPriceMap(resp.currentPrices);
+        this.cryptoInvestments = this.setCurrentPrices(this.cryptoInvestments);
+      }
+    })
+  }
+
+  getStockInvestments() {
+    this.userInvestmentsService.getAllInvestments(
+      this.user.userId,
+      'https://scottsl.com/api/stock'
+    ).subscribe(resp => {
+      if (resp.investments) {
+        this.stockInvestments = resp.investments
+      }
+    })
+  }
+
+  getCurrentStockPrices() {
+    this.financialModelService.getCurrentPrices(this.user.userId, 600000, false).subscribe(resp => {
+      if (resp) {
+        this.setCurrentPriceMap(resp.currentPrices);
+        this.stockInvestments = this.setCurrentPrices(this.stockInvestments);
+      }
+    })
+  }
+
+
+   //3
+   setCurrentPriceMap(currentPrices: any[]) {
+    for (let price of currentPrices) {
+      this.currentPriceMap.set(price.tickerSymbol, +price.price)
+    }
+  }
+
+  //4
+  setCurrentPrices(investments: Investment[]): Investment[] {
+    for (let investment of investments) {
+      investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
+      investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
+    }
+
+    return investments
+  }
+
+
+
+
+
 
 
 

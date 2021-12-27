@@ -8,10 +8,16 @@
 
     <div class="row">
         <div class="col-6">
-            <app-crypto [user]="user"></app-crypto>
+            <app-crypto 
+                [user]="user"
+                [investments]="cryptoInvestments"
+            ></app-crypto>
         </div>
         <div class="col-6">
-            <app-stock [user]="user"></app-stock>
+            <app-stock 
+                [user]="user"
+                [investments]="stockInvestments" 
+            ></app-stock>
         </div>
     </div>
 </div>

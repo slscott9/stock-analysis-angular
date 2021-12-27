@@ -14,11 +14,9 @@ export class StockComponent implements OnInit {
   logContext: string = 'STOCK COMPONENT'
 
   @Input() user: User
-  @Input() userInvestments: boolean
+  @Input() investments: Investment[] = []
 
-  investments: Investment[] = []
-
-  currentPriceMap = new Map<string, number>()
+  // currentPriceMap = new Map<string, number>()
 
 
   constructor(
@@ -34,44 +32,44 @@ export class StockComponent implements OnInit {
   }
 
 
-  ngOnChanges() {
-    this.getUserInvestments();
-    // this.getCurrentPrices();
+  // ngOnChanges() {
+  //   this.getUserInvestments();
+  //   // this.getCurrentPrices();
 
-  }
+  // }
 
-  getUserInvestments() {
-    this.userInvestmentsService.getAllInvestments(
-      this.user.userId,
-      'https://scottsl.com/api/stock'
-    ).subscribe(resp => {
-      if (resp.investments) {
-        this.investments = resp.investments
-      }
-    })
-  }
+  // getUserInvestments() {
+  //   this.userInvestmentsService.getAllInvestments(
+  //     this.user.userId,
+  //     'https://scottsl.com/api/stock'
+  //   ).subscribe(resp => {
+  //     if (resp.investments) {
+  //       this.investments = resp.investments
+  //     }
+  //   })
+  // }
 
-  getCurrentPrices() {
-    this.financialModelService.getCurrentPrices(this.user.userId, 600000, false).subscribe(resp => {
-      if (resp) {
-        this.setCurrentPriceMap(resp.currentPrices);
-        this.setCurrentPrices();
-      }
-    })
-  }
+  // getCurrentPrices() {
+  //   this.financialModelService.getCurrentPrices(this.user.userId, 600000, false).subscribe(resp => {
+  //     if (resp) {
+  //       this.setCurrentPriceMap(resp.currentPrices);
+  //       this.setCurrentPrices();
+  //     }
+  //   })
+  // }
 
-  //utility
-  setCurrentPriceMap(currentPrices: any[]) {
-    for (let price of currentPrices) {
-      this.currentPriceMap.set(price.tickerSymbol, +price.price)
-    }
-  }
+  // //utility
+  // setCurrentPriceMap(currentPrices: any[]) {
+  //   for (let price of currentPrices) {
+  //     this.currentPriceMap.set(price.tickerSymbol, +price.price)
+  //   }
+  // }
 
-  setCurrentPrices() {
-    for (let investment of this.investments) {
-      investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
-      investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
-    }
-  }
+  // setCurrentPrices() {
+  //   for (let investment of this.investments) {
+  //     investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
+  //     investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
+  //   }
+  // }
 
 }

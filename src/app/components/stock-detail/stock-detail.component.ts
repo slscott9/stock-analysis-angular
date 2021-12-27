@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Investment } from 'src/app/interfaces/interfaces';
+import { Investment, User } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-stock-detail',
@@ -12,6 +12,8 @@ export class StockDetailComponent implements OnInit {
 
 
   @Input() investments: Investment[]
+  @Input() user: User
+
 
 
   constructor() { }

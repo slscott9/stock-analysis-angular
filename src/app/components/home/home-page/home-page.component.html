@@ -1,7 +1,4 @@
 <div class="container-fluid vh-100">
-
-    NEW HOME PAGE COMP
-
     <!--MAIN CONTENT-->
     <div class="main-content mt-3">
 
@@ -25,25 +22,22 @@
                     [stockProfit]="stockProfit" [stockInvestment]="stockInvestment"
                     [stockCurrentPriceTotal]="stockCurrentPriceTotal" [cryptoProfit]="cryptoProfit"
                     [cryptoInvestment]="cryptoInvestment" [cryptoCurrentPriceTotal]="cryptoCurrentPriceTotal"
-                    [user]="user"
+                    [user]="user" [stockInvestments]="stockInvestments" [cryptoInvestments]="cryptoInvestments"
                 ></app-home-investment-info>
             </div>
 
-
-
-
             <!--INVESTMENTS DETAIL-->
             <div class="col-10" *ngIf="homeState.showCryptoDetail === true">
-                show crypto detail
                 <app-crypto-detail
-                    [investments]="cryptoInvestments"
+                    [user]="user"
+                    [investments]="cryptoInvestments" 
                 ></app-crypto-detail>
             </div>
 
             <div class="col-10" *ngIf="homeState.showStockDetail === true">
-                show stock detail
                 <app-stock-detail
-                    [investments]="stockInvestments"
+                    [user]="user"
+                    [investments]="stockInvestments" 
                 ></app-stock-detail>
             </div>
 

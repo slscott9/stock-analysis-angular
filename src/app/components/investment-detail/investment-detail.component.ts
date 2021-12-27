@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Investment } from 'src/app/interfaces/interfaces';
+import { Investment, User } from 'src/app/interfaces/interfaces';
 import { UserDataService } from 'src/app/services/events/user-data-event/user-data.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class InvestmentDetailComponent implements OnInit {
   logContext: string = 'USER INVESTMENTS COMPONENT'
 
   @Input() investments: Investment[]
+  @Input() user: User
 
   @Input() totalProfit: number 
   @Input() currentPriceTotal: number
