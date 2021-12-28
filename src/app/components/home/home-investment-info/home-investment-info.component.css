@@ -1,0 +1,19 @@
+.left-transition {
+    animation-name: left;
+    animation-duration: 1s;
+    animation-delay: 0;
+}
+
+
+@keyframes left {
+    0% {
+        transform: translateX(-100%);
+
+    }
+    50% {
+      
+
+    }
+    100% {
+    }
+}

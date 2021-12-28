@@ -1,13 +1,22 @@
-.container {
+
+.investments {
     background-color: #252422;
     border-radius: 10px;
-
 }
 
 .card {
     background-color: #252422;
+    border-radius: 15px;
 }
 
 hr {
     border-color: grey;
 }
+
+.profit {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+

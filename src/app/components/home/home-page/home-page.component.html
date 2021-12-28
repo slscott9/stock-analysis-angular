@@ -17,28 +17,22 @@
             <!--TOTAL INVESTMENTS and HOME INVESTMENTS-->
 
             <div class="col-10" *ngIf="homeState.showHome !== false">
-                <app-home-investment-info
-                    [user]="user" [totalProfit]="totalProfit" [currentPriceTotal]="currentPriceTotal"
-                    [stockProfit]="stockProfit" [stockInvestment]="stockInvestment"
-                    [stockCurrentPriceTotal]="stockCurrentPriceTotal" [cryptoProfit]="cryptoProfit"
-                    [cryptoInvestment]="cryptoInvestment" [cryptoCurrentPriceTotal]="cryptoCurrentPriceTotal"
-                    [user]="user" [stockInvestments]="stockInvestments" [cryptoInvestments]="cryptoInvestments"
-                ></app-home-investment-info>
+                <app-home-investment-info [user]="user" [totalProfit]="totalProfit"
+                    [currentPriceTotal]="currentPriceTotal" [stockProfit]="stockProfit"
+                    [stockInvestment]="stockInvestment" [stockCurrentPriceTotal]="stockCurrentPriceTotal"
+                    [cryptoProfit]="cryptoProfit" [cryptoInvestment]="cryptoInvestment"
+                    [cryptoCurrentPriceTotal]="cryptoCurrentPriceTotal" [user]="user"
+                    [stockInvestments]="stockInvestments" [cryptoInvestments]="cryptoInvestments">
+                </app-home-investment-info>
             </div>
 
             <!--INVESTMENTS DETAIL-->
             <div class="col-10" *ngIf="homeState.showCryptoDetail === true">
-                <app-crypto-detail
-                    [user]="user"
-                    [investments]="cryptoInvestments" 
-                ></app-crypto-detail>
+                <app-crypto-detail [user]="user" [investments]="cryptoInvestments"></app-crypto-detail>
             </div>
 
             <div class="col-10" *ngIf="homeState.showStockDetail === true">
-                <app-stock-detail
-                    [user]="user"
-                    [investments]="stockInvestments" 
-                ></app-stock-detail>
+                <app-stock-detail [user]="user" [investments]="stockInvestments"></app-stock-detail>
             </div>
 
 
@@ -52,8 +46,5 @@
                 </div>
             </div>
         </div>
-
-
-        
     </div>
 </div>

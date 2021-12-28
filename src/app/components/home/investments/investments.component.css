@@ -1,6 +1,7 @@
 .container {
     background-color: #252422;
     border-radius: 10px;
+    
 
 }
 
@@ -10,4 +11,8 @@
 
 hr {
     border-color: grey;
+}
+
+.info {
+    background-color: red;
 }

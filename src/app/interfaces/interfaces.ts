@@ -60,9 +60,6 @@ export interface HomeState {
     showHome: boolean
 }
 
-
-
-
 //auth state
 export interface AuthState {
     showLogin: boolean,
