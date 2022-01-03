@@ -51,6 +51,10 @@ export interface ComponentState {
 
 }
 
+export interface Notification {
+    
+}
+
 
 
 //home state

@@ -13,16 +13,16 @@
 
                     <div class="col label-sm">
                         <div class="mt-1 info" [ngClass]="investment.priceDiff < 0 ? 'text-danger' : 'text-success'"> 
-                            <!-- ${{investment.priceDiff | number}} -->
-                            $1000
+                            ${{investment.priceDiff | number}}
+                            <!-- $1000 -->
                         </div>
                     </div>
 
                     <!--CURRENT PRICE AND DIFF-->
                     <div class="col label-sm">
                         <div class="mt-1 info">
-                            <!-- ${{investment.currentPrice | number}} -->
-                            $50
+                            ${{investment.currentPrice | number}}
+                            <!-- $50 -->
                         </div>
                     </div>
                 </div>

@@ -38,6 +38,9 @@ export class HomePageComponent implements OnInit {
   currentPriceMap = new Map<string, number>()
 
 
+  notifications: number[] = []
+
+
   homeState: HomeState = {
     showHome: true,
     showCryptoDetail: false,
@@ -60,11 +63,8 @@ export class HomePageComponent implements OnInit {
       this.authService.getUser().subscribe(resp => {
         if(resp.data){
           this.user = resp.data
-          // this.calculateTotals();
-
           this.getCryptoInvestments();
           this.getStockInvestments();
-
         }
       }) 
     }
@@ -76,6 +76,12 @@ export class HomePageComponent implements OnInit {
     this.navBarEventService.navBarEvent.subscribe(event => {
       this.homeState = event
     })
+  }
+
+  loadUserData() {
+    this.calculateTotals();
+    this.getCurrentCryptPrices();
+    this.getCurrentStockPrices();
   }
 
 
@@ -157,6 +163,16 @@ export class HomePageComponent implements OnInit {
     }
 
     return investments
+  }
+  /*  
+    loads current prices
+
+
+  */
+
+  generateNotification(priceDiff: number, investment: Investment) {
+    //currrentPrice * totalShares
+    //compare to totalInvestment
   }
 
 
