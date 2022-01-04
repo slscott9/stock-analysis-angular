@@ -51,8 +51,9 @@ export interface ComponentState {
 
 }
 
-export interface Notification {
-    
+export interface InvestmentNotification {
+    symbol: string,
+    diff: number
 }
 
 

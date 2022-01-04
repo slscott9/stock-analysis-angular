@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { User, HomeState, Investment } from 'src/app/interfaces/interfaces';
+import { User, HomeState, Investment, InvestmentNotification } from 'src/app/interfaces/interfaces';
 import { logInfo } from 'src/app/logger/logger';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { CoinmarketService } from 'src/app/services/coinmarket/coinmarket.service';
@@ -38,7 +38,7 @@ export class HomePageComponent implements OnInit {
   currentPriceMap = new Map<string, number>()
 
 
-  notifications: number[] = []
+  notifications: InvestmentNotification[] = []
 
 
   homeState: HomeState = {
@@ -160,6 +160,12 @@ export class HomePageComponent implements OnInit {
     for (let investment of investments) {
       investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
       investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
+      this.generateNotification(
+        this.currentPriceMap.get(investment.tickerSymbol),
+        investment.totalShares,
+        investment.initialPPS,
+        investment.tickerSymbol
+      )
     }
 
     return investments
@@ -170,9 +176,27 @@ export class HomePageComponent implements OnInit {
 
   */
 
-  generateNotification(priceDiff: number, investment: Investment) {
+  generateNotification(currentPrice: number, totalShares: number, initialPPS: number, symbol: string) {
     //currrentPrice * totalShares
     //compare to totalInvestment
+
+    let currentValue = currentPrice * totalShares
+    let initialValue = initialPPS * totalShares
+
+    let diff = currentValue - initialValue
+
+    this.notifications.push(
+      {
+        symbol: symbol,
+        diff: diff
+      }
+    )
+
+    // if(diff > 0) {
+
+    // }else {
+
+    // }
   }
 
 
