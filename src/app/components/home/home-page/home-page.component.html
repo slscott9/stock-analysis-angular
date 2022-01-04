@@ -46,7 +46,14 @@
             <div class="col-2 pl-0">
                 <div class="card card-notification">
                     <div class="card-body">
-                        Nofications
+                        <div *ngFor="let notification of notifications">
+                            <div>
+                                {{notification.symbol}} 
+                            </div>
+                            <div>
+                                {{notification.diff}}
+                            </div>
+                        </div>
 
                     </div>
                 </div>
