@@ -47,11 +47,16 @@
                 <div class="card card-notification">
                     <div class="card-body">
                         <div *ngFor="let notification of notifications">
-                            <div>
-                                {{notification.symbol}} 
-                            </div>
-                            <div>
-                                {{notification.diff}}
+                            <div class="mt-4">
+                                <div>
+                                    {{notification.symbol}} 
+                                </div>
+                                <div>
+                                    {{notification.message }} 
+                                    <span [ngClass]="totalProfit < 0 ? 'text-danger' : 'text-success'">
+                                        {{notification.diff | number}}
+                                    </span>
+                                </div>
                             </div>
                         </div>
 

@@ -1,5 +1,7 @@
+import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { forkJoin } from 'rxjs';
 import { User, HomeState, Investment, InvestmentNotification } from 'src/app/interfaces/interfaces';
 import { logInfo } from 'src/app/logger/logger';
@@ -8,6 +10,7 @@ import { CoinmarketService } from 'src/app/services/coinmarket/coinmarket.servic
 import { AuthEventService } from 'src/app/services/events/auth-event.service';
 import { NavBarEventService } from 'src/app/services/events/nav-bar-event/nav-bar-event.service';
 import { FinancialModelService } from 'src/app/services/financial-model/financial-model.service';
+import { NotificationUtilityService } from 'src/app/services/notification-utility/notification-utility.service';
 import { UserInvestmentsService } from 'src/app/services/user-investments/user-investments.service';
 
 @Component({
@@ -40,6 +43,39 @@ export class HomePageComponent implements OnInit {
 
   notifications: InvestmentNotification[] = []
 
+  notifcationProfitPrices: number[] = [
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1100,
+    1200,
+    1300
+  ]
+
+  notifcationLossPrices: number[] = [
+    -100,
+    -200,
+    -300,
+    -400,
+    -500,
+    -600,
+    -700,
+    -800,
+    -900,
+    -1000,
+    -1100,
+    -1200,
+    -1300
+  ]
+
+
 
   homeState: HomeState = {
     showHome: true,
@@ -55,21 +91,28 @@ export class HomePageComponent implements OnInit {
     private coinMarketService: CoinmarketService,
     private financialModelService: FinancialModelService,
     private userInvestmentsService: UserInvestmentsService,
+    private notificationUtilityService: NotificationUtilityService
 
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    if(this.authService.isLoggedIn()){
+
+
+    console.log(moment(new Date()))
+
+
+    if (this.authService.isLoggedIn()) {
       this.authService.getUser().subscribe(resp => {
-        if(resp.data){
+        if (resp.data) {
           this.user = resp.data
           this.getCryptoInvestments();
           this.getStockInvestments();
+          this.loadUserData();
         }
-      }) 
+      })
     }
 
-    this.authEventService.authenticatedEvent.subscribe(event => {      
+    this.authEventService.authenticatedEvent.subscribe(event => {
       this.user = event
     })
 
@@ -87,27 +130,29 @@ export class HomePageComponent implements OnInit {
 
   calculateTotals() {
     forkJoin(
-      [this.coinMarketService.currentPriceTotals(this.user.userId, true), 
-        this.financialModelService.currentPriceTotals(this.user.userId, false)]
+      [this.coinMarketService.currentPriceTotals(this.user.userId, true),
+      this.financialModelService.currentPriceTotals(this.user.userId, false)]
     )
-    .subscribe(responses => {
-      this.cryptoCurrentPriceTotal = responses[0].currentPriceTotals
-      this.stockCurrentPriceTotal = responses[1].currentPriceTotals
+      .subscribe(responses => {
+        this.cryptoCurrentPriceTotal = responses[0].currentPriceTotals
+        this.stockCurrentPriceTotal = responses[1].currentPriceTotals
 
-      this.cryptoProfit = this.cryptoCurrentPriceTotal - this.user.cryptoInitialInvestment
-      this.stockProfit = this.stockCurrentPriceTotal - this.user.stockInitialInvestment
+        //Not updating with current prices because its not in get current cryptoPrices or getCurrentStockPrices()
+        //those function have the call every 15 minutes
+        this.cryptoProfit = this.cryptoCurrentPriceTotal - this.user.cryptoInitialInvestment
+        this.stockProfit = this.stockCurrentPriceTotal - this.user.stockInitialInvestment
 
-      this.currentPriceTotal = this.cryptoCurrentPriceTotal + this.stockCurrentPriceTotal
+        this.currentPriceTotal = this.cryptoCurrentPriceTotal + this.stockCurrentPriceTotal
 
-      this.totalProfit = this.cryptoProfit + this.stockProfit
+        this.totalProfit = this.cryptoProfit + this.stockProfit
 
-    })
+      })
   }
 
 
   getCryptoInvestments() {
     this.userInvestmentsService.getAllInvestments(
-      this.user.userId, 
+      this.user.userId,
       'https://scottsl.com/api/crypto'
     ).subscribe(resp => {
 
@@ -139,8 +184,10 @@ export class HomePageComponent implements OnInit {
   }
 
   getCurrentStockPrices() {
-    this.financialModelService.getCurrentPrices(this.user.userId, 600000, false).subscribe(resp => {
+    this.financialModelService.getCurrentPrices(this.user.userId, 900000, false).subscribe(resp => {
       if (resp) {
+        console.log('CALL TO GET CURRENT STOCK PRICES' + moment(new Date()))
+        console.log(resp)
         this.setCurrentPriceMap(resp.currentPrices);
         this.stockInvestments = this.setCurrentPrices(this.stockInvestments);
       }
@@ -148,8 +195,8 @@ export class HomePageComponent implements OnInit {
   }
 
 
-   //3
-   setCurrentPriceMap(currentPrices: any[]) {
+  //3
+  setCurrentPriceMap(currentPrices: any[]) {
     for (let price of currentPrices) {
       this.currentPriceMap.set(price.tickerSymbol, +price.price)
     }
@@ -160,50 +207,23 @@ export class HomePageComponent implements OnInit {
     for (let investment of investments) {
       investment.currentPrice = this.currentPriceMap.get(investment.tickerSymbol)
       investment.priceDiff = this.currentPriceMap.get(investment.tickerSymbol) - investment.initialPPS
-      this.generateNotification(
-        this.currentPriceMap.get(investment.tickerSymbol),
-        investment.totalShares,
-        investment.initialPPS,
-        investment.tickerSymbol
-      )
+      console.log(investment.tickerSymbol)
+      if (investment.tickerSymbol === 'ETH') {
+        let notification = this.notificationUtilityService.calculateNotification(
+          investment.totalInvestment,
+          investment.totalShares,
+          investment.currentPrice,
+          investment.tickerSymbol
+        )
+        
+        this.notifications.push(notification)
+      }
     }
+
+    console.log('SET CURRENT PRICES RETURNING INVESTMENTS' + moment(new Date()))
+    console.log(investments)
 
     return investments
   }
-  /*  
-    loads current prices
-
-
-  */
-
-  generateNotification(currentPrice: number, totalShares: number, initialPPS: number, symbol: string) {
-    //currrentPrice * totalShares
-    //compare to totalInvestment
-
-    let currentValue = currentPrice * totalShares
-    let initialValue = initialPPS * totalShares
-
-    let diff = currentValue - initialValue
-
-    this.notifications.push(
-      {
-        symbol: symbol,
-        diff: diff
-      }
-    )
-
-    // if(diff > 0) {
-
-    // }else {
-
-    // }
-  }
-
-
-
-
-
-
-
-
+  
 }
