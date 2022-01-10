@@ -130,10 +130,11 @@ export class HomePageComponent implements OnInit {
 
   calculateTotals() {
     forkJoin(
-      [this.coinMarketService.currentPriceTotals(this.user.userId, true),
-      this.financialModelService.currentPriceTotals(this.user.userId, false)]
+      [this.coinMarketService.currentPriceTotals(this.user.userId, true, 600000),
+      this.financialModelService.currentPriceTotals(this.user.userId, false, 600000)]
     )
       .subscribe(responses => {
+        console.log(responses)
         this.cryptoCurrentPriceTotal = responses[0].currentPriceTotals
         this.stockCurrentPriceTotal = responses[1].currentPriceTotals
 

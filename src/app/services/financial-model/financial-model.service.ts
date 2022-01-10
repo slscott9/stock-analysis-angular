@@ -26,14 +26,19 @@ export class FinancialModelService {
   //https://scottsl.com/api/coinmarket/current/totals
 
   
-  currentPriceTotals(userId: number, isCrypto: boolean): Observable<any> {
-    return this.http.post(
-      'https://scottsl.com/api/financial/current/totals',
-      {
-        userId: userId,
-        isCrypto: isCrypto
-      },      
-      this.httpOptions
+  currentPriceTotals(userId: number, isCrypto: boolean, interval: number): Observable<any> {
+    return timer(0, interval)
+    .pipe(
+      switchMap(
+        _ => this.http.post(
+          'https://scottsl.com/api/financial/current/totals',
+          {
+            userId: userId,
+            isCrypto: isCrypto
+          },      
+          this.httpOptions
+        )
+      )
     )
   }
 
